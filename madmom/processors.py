@@ -658,7 +658,7 @@ class BufferProcessor(Processor):
         # if buffer_size is int, make a tuple
         elif isinstance(buffer_size, int):
             buffer_size = (buffer_size, )
-        # FIXME: use np.pad for fancy initialisation (can be done in process())
+        # TODO: use np.pad for fancy initialisation (can be done in process())
         # init buffer if needed
         if buffer_size is not None and init is None:
             init = np.ones(buffer_size) * init_value
@@ -684,7 +684,8 @@ class BufferProcessor(Processor):
         # expected minimum number of dimensions
         ndmin = len(self.buffer_size)
         # cast the data to have that many dimensions
-        data = np.array(data, copy=False, subok=True, ndmin=ndmin)
+        if data.ndim < ndmin:
+            data = np.array(data, copy=False, subok=True, ndmin=ndmin)
         # length of the data
         data_length = len(data)
         # remove `data_length` from buffer at the beginning and append new data

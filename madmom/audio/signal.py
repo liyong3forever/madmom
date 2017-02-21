@@ -790,6 +790,22 @@ class Signal(np.ndarray):
         """
         return write_wave_file(self, filename)
 
+    def energy(self):
+        """Energy of signal."""
+        return energy(self)
+
+    def root_mean_square(self):
+        """Root mean square of signal."""
+        return root_mean_square(self)
+
+    rms = root_mean_square
+
+    def sound_pressure_level(self):
+        """Sound pressure level of signal."""
+        return sound_pressure_level(self)
+
+    spl = sound_pressure_level
+
 
 class SignalProcessor(Processor):
     """
@@ -1288,6 +1304,22 @@ class FramedSignal(object):
     def ndim(self):
         """Dimensionality of the FramedSignal."""
         return len(self.shape)
+
+    def energy(self):
+        """Energy of the individual frames."""
+        return energy(self)
+
+    def root_mean_square(self):
+        """Root mean square of the individual frames."""
+        return root_mean_square(self)
+
+    rms = root_mean_square
+
+    def sound_pressure_level(self):
+        """Sound pressure level of the individual frames."""
+        return sound_pressure_level(self)
+
+    spl = sound_pressure_level
 
 
 class FramedSignalProcessor(Processor):
